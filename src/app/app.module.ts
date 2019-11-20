@@ -4,15 +4,32 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import {MaterialModule} from './shared/material.modul.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { WelcomeComponent } from './core/welcome.component';
+import { PageNotFoundComponent } from './core/page-not-found.component';
+
+import {RecipedModule} from './reciped-project/reciped.module.module';
+import {DirectivesModule} from './directives-project/directives.module';
+import {ShoppingListService} from './reciped-project/shopping-list/shopping-list.service';
+import { RecipeEditComponent } from './reciped-project/recipes/recipe-edit/recipe-edit.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent,
+    PageNotFoundComponent,
+    RecipeEditComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    MaterialModule,
+    FlexLayoutModule,
+    AppRoutingModule,
+    RecipedModule,
+    DirectivesModule
   ],
-  providers: [],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
