@@ -7,17 +7,18 @@ import {RecipesComponent} from './recipes/recipes.component';
 import {RecipedProjectComponent} from './reciped-project.component';
 import {HeaderComponent} from './header/header.component';
 import {ShoppingListComponent} from './shopping-list/shopping-list.component';
-import {ShoppingListEditComponent} from './shopping-list/shopping-list-edit.component';
+import {ShoppingListEditComponent} from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import {MatCardModule} from '@angular/material/card';
 
 
 import {DropdownDirectiveDirective} from './shared/dropdown-directive.directive';
 import {RouterModule} from '@angular/router';
 import { RecipeInfoComponent } from './recipes/recipe-info/recipe-info.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
 
-  imports: [CommonModule, MatCardModule, RouterModule],
+  imports: [CommonModule, MatCardModule, RouterModule, FormsModule, ReactiveFormsModule],
   declarations: [
     RecipeDetailComponent,
     RecipeListComponent,

@@ -6,12 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reciped-project.component.scss']
 })
 export class RecipedProjectComponent implements OnInit {
-  private menu: string = 'recipe';
-  constructor() { }
-
-  ngOnInit() {
-  }
-  onMenuSelected(menu: string) {
-    this.menu = menu;
+  ngOnInit(): void {
   }
 }

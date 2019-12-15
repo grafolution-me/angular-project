@@ -13,6 +13,7 @@ import {RecipedModule} from './reciped-project/reciped.module.module';
 import {DirectivesModule} from './directives-project/directives.module';
 import {ShoppingListService} from './reciped-project/shopping-list/shopping-list.service';
 import { RecipeEditComponent } from './reciped-project/recipes/recipe-edit/recipe-edit.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RecipeEditComponent } from './reciped-project/recipes/recipe-edit/recip
     FlexLayoutModule,
     AppRoutingModule,
     RecipedModule,
-    DirectivesModule
+    DirectivesModule,
+    ReactiveFormsModule
   ],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]
