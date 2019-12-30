@@ -1,0 +1,55 @@
+
+<div class="row">
+  <div class="col-md-8   col-xl-6 col-md-offset-2 col-xl-offset-3">
+  <div class="alert alert-danger" *ngIf="error">
+    <p>{{error}}</p>
+  </div>
+  <div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+
+    <form  #authForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <div *ngIf="emailRef.invalid && emailRef.touched" style="color:red;padding:5px">
+          <p>
+            Please enter a valid E-Mail.
+          </p>
+        </div>
+        <input type="text" id="email"
+               class="form-control"
+               ngModel
+               name="email"
+               required
+               email
+               #emailRef="ngModel"
+        >
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password</label>
+        <div *ngIf="pwdRef.invalid && pwdRef.touched" style="color:red;padding:5px">
+          <p>
+            Please enter a password with a mininmum of 6 characters.
+          </p>
+        </div>
+        <input type="text"
+               id="pwd"
+               class="form-control"
+               ngModel
+               name="password"
+               minlength="6"
+               required
+               #pwdRef="ngModel"
+        >
+      </div>
+
+      <div >
+        <button class="btn btn-primary" type="submit" [disabled]="authForm.invalid">{{isLoggedIn() ? 'Login' : 'Sign Up'}}</button>
+        <button class="btn btn-primary" (click)="setLogIn(!isLoggedIn())" type="button">
+          Switch to {{isLoggedIn() ? 'Sign Up': 'Login'}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

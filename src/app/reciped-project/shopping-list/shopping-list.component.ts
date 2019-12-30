@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { IngredientModel} from '../shared/Ingredient.model';
 import {ShoppingListService} from './shopping-list.service';
 import {Subscription} from 'rxjs';
+import {DaoRecipeService} from '../shared/dao.recipe.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,9 +16,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.ingredients = this.serviceIngredient.getIngredients();
-    console.log(this.ingredients);
-    this.serviceIngredientSub  = this.serviceIngredient
-      .ingredientsChanged
+    this.serviceIngredientSub = this.serviceIngredient.ingredientsChanged
       .subscribe(
         (ing: IngredientModel[]) => {
           this.ingredients = ing;

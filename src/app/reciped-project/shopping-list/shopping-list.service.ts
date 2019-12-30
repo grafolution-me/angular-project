@@ -3,9 +3,7 @@ import {Injectable} from '@angular/core';
 import {IngredientModel} from '../shared/Ingredient.model';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class ShoppingListService {
   public ingredientsChanged = new Subject<IngredientModel[]>();
   public startedEditing = new Subject<number>();

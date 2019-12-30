@@ -14,6 +14,10 @@ import {DirectivesModule} from './directives-project/directives.module';
 import {ShoppingListService} from './reciped-project/shopping-list/shopping-list.service';
 import { RecipeEditComponent } from './reciped-project/recipes/recipe-edit/recipe-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RecipeService} from './reciped-project/recipes/recipe.service';
+import {DaoRecipeService} from './reciped-project/shared/dao.recipe.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthIntercepterService} from './reciped-project/auth/auth-intercepter.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     DirectivesModule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, RecipeService, DaoRecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

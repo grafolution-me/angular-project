@@ -5,12 +5,12 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule,
+  MatCardModule, MatProgressSpinnerModule
 } from '@angular/material';
-import {MatListModule} from "@angular/material/list";
+import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from "@angular/material/sidenav";
 
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -32,6 +32,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatCardModule,
     MatListModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule
   ]
 })
