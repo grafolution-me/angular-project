@@ -10,6 +10,9 @@
 
 
     <form  #authForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+      <div>
+        <p class="text-primary">{{isRegistered() ? 'Login Page' : 'Sign Up Page'}}</p>
+      </div>
       <div class="form-group">
         <label for="email">E-Mail</label>
         <div *ngIf="emailRef.invalid && emailRef.touched" style="color:red;padding:5px">
@@ -33,7 +36,7 @@
             Please enter a password with a mininmum of 6 characters.
           </p>
         </div>
-        <input type="text"
+        <input type="password"
                id="pwd"
                class="form-control"
                ngModel
@@ -44,12 +47,15 @@
         >
       </div>
 
-      <div >
-        <button class="btn btn-primary" type="submit" [disabled]="authForm.invalid">{{isLoggedIn() ? 'Login' : 'Sign Up'}}</button>
-        <button class="btn btn-primary" (click)="setLogIn(!isLoggedIn())" type="button">
-          Switch to {{isLoggedIn() ? 'Sign Up': 'Login'}}
-        </button>
+      <div class="text-center">
+        <button class="btn btn-xs" type="submit" [disabled]="authForm.invalid">{{isRegistered() ? 'Login' : 'Sign Up'}}</button>
       </div>
+      <div class="text-center">
+      <button class="btn btn-xs" (click)="setRegistered(!isRegistered())" type="button">
+      Switch to {{isRegistered() ? 'Sign Up': 'Login'}}</button>
+     </div>
+
+
     </form>
   </div>
 </div>

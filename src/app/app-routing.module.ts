@@ -18,44 +18,7 @@ import {AuthGuard} from './reciped-project/auth/auth.guard';
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'directive', component:  DirectivesComponent},
-  { path: 'reciped', component:  RecipedProjectComponent,
-    children: [
-      {
-        path: 'shoppingList',
-        component: ShoppingListComponent
-      },
-      {
-        path: 'recipes',
-        component: RecipesComponent,
-        canActivate: [AuthGuard],
-        children: [
-          {
-            path: '',
-            component: RecipeInfoComponent
-          },
-          {
-            path: 'new',
-            component: RecipeEditComponent
-          },
-          {
-            path: ':id',
-            component: RecipeDetailComponent,
-            resolve: [RecipesResolverService]
-          },
-          {
-            path: ':id/edit',
-            component: RecipeEditComponent,
-            resolve: [RecipesResolverService]
-          }
-        ]
-      },
-      {
-        path: 'auth',
-        component: AuthComponent
-      }
-    ]
-  },
-  { path: '**', component: PageNotFoundComponent }
+
 ];
 
 @NgModule({
