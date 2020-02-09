@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DaoRecipeService} from '../../shared/dao.recipe.service';
-import {AuthService} from '../../auth/auth.service';
+import {DaoRecipeService} from '../shared/dao.recipe.service';
+import {AuthService} from '../auth/auth.service';
 import {Subscription} from 'rxjs';
 
 @Component({

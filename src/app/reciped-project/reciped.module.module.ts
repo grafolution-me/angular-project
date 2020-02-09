@@ -1,33 +1,61 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
+import {RecipeListComponent} from './recipes/recipe-list/recipe-list.component';
+import {RecipeItemComponent} from './recipes/recipe-list/recipe-item/recipe-item.component';
+import {RecipesComponent} from './recipes/recipes.component';
+import {RecipedProjectComponent} from './reciped-project.component';
+import {HeaderComponent} from './header/header.component';
+import {ShoppingListComponent} from './shopping-list/shopping-list.component';
+import {ShoppingListEditComponent} from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import {MatCardModule} from '@angular/material/card';
-import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import {RecipedRoutingModule} from './reciped-routing.module';
-import {WelcomeRecipeComponent} from './components/welcome-recipe/welcome-recipe.component';
-import {SharedModule} from './shared/shared.module';
-import {CoreModule} from './core.module';
-import {RecipeModule} from './recipes/recipe.module';
-import {ShoppingListModule} from './shopping-list/shopping-list.module';
-import {AuthModule} from './auth/auth.module';
+
+
+import {DropdownDirectiveDirective} from './shared/dropdown-directive.directive';
+import {RouterModule} from '@angular/router';
+import {RecipeInfoComponent} from './recipes/recipe-info/recipe-info.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RecipeService} from './recipes/recipe.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import {MaterialModule} from '../shared/material.modul.module';
+import {LoadingSpinnerComponent} from './shared/spinner/loading-spinner';
+import {AuthIntercepterService} from './auth/auth-intercepter.service';
+
 
 @NgModule({
 
-  imports: [
-    CommonModule,
-    MatCardModule,
-    AuthModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RecipedRoutingModule,
-    SharedModule,
-    ShoppingListModule,
-    RecipeModule,
-    CoreModule
-  ],
+  imports: [CommonModule, MatCardModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule],
   declarations: [
-    WelcomeRecipeComponent,
+    RecipeDetailComponent,
+    RecipeListComponent,
+    RecipeItemComponent,
+    RecipesComponent,
+    RecipedProjectComponent,
+    HeaderComponent,
+    ShoppingListComponent,
+    ShoppingListEditComponent,
 
-  ]
+    DropdownDirectiveDirective,
+
+
+    RecipeInfoComponent,
+
+
+    AuthComponent,
+    LoadingSpinnerComponent
+  ],
+  exports: [
+    RecipeDetailComponent,
+    RecipeListComponent,
+    RecipeItemComponent,
+    RecipesComponent,
+    RecipedProjectComponent,
+    ShoppingListComponent,
+    ShoppingListEditComponent,
+    CommonModule,
+    DropdownDirectiveDirective
+  ],
+  providers: [RecipeService, {provide: HTTP_INTERCEPTORS, useClass: AuthIntercepterService, multi: true}]
 })
 export class RecipedModule { }

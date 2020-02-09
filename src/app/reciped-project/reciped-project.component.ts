@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './auth/auth.service';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-reciped-project',
@@ -9,23 +8,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 })
 export class RecipedProjectComponent implements OnInit {
-  isAuthenticated = false;
-
-  constructor(private authService: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {
+  constructor(private authService: AuthService) {
   }
-
   ngOnInit(): void {
     this.authService.retrieveUserData();
-    this.authService.user.subscribe(data => {
-        this.isAuthenticated = !data ? false : true;
-      }
-    );
-    if (this.isAuthenticated) {
-      this.router.navigate(['recipes'], {relativeTo: this.route});
-    } else {
-      this.router.navigate(['auth'], {relativeTo: this.route});
-    }
   }
 }

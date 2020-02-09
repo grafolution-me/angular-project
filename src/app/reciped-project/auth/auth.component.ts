@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
   @ViewChild('authForm', {static: false}) authForm: NgForm;
   isLoading = false;
   error: string;
-  private registered = false;
+  private loggedIn = false;
 
   constructor(private authService: AuthService,
               private router: Router) {
@@ -23,12 +23,12 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  isRegistered() {
-    return this.registered;
+  isLoggedIn() {
+    return this.loggedIn;
   }
 
-  setRegistered(val: boolean) {
-    this.registered = val;
+  setLogIn(val: boolean) {
+    this.loggedIn = val;
   }
 
   onSubmit() {
@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit {
 
   private authenticateUser(email: string, password: string) {
     let observableAuth: Observable<AuthResponseData> = null;
-    if (!this.registered) {
+    if (!this.loggedIn) {
       observableAuth = this.authService.signUp(email, password);
     } else {
       observableAuth = this.authService.login(email, password);
