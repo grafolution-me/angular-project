@@ -16,6 +16,7 @@ import {RecipeEditComponent} from './reciped-project/recipes/recipe-edit/recipe-
 import {ReactiveFormsModule} from '@angular/forms';
 import {RecipeService} from './reciped-project/recipes/recipe.service';
 import {DaoRecipeService} from './reciped-project/shared/dao.recipe.service';
+import {RecipedRoutingModule} from './reciped-project/reciped-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,11 @@ import {DaoRecipeService} from './reciped-project/shared/dao.recipe.service';
   ],
   imports: [
     BrowserModule,
-
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
     RecipedModule,
+    RecipedRoutingModule,
     DirectivesModule,
     ReactiveFormsModule
   ],
