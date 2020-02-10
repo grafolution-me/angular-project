@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RecipesComponent} from './recipes/recipes.component';
-import {AuthGuard} from './auth/auth.guard';
 import {AuthComponent} from './auth/auth.component';
 import {RecipedProjectComponent} from './reciped-project.component';
 import {WelcomeRecipeComponent} from './components/welcome-recipe/welcome-recipe.component';
