@@ -6,7 +6,7 @@ import {DirectivesComponent} from './directives-project/directives.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'directive', component:  DirectivesComponent}
+  { path: 'directive', component:  DirectivesComponent}, 
 
 ];
 
