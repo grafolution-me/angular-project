@@ -22,11 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'recipes',
-        component: RecipesComponent,
-        canActivate: [AuthGuard],
-        children: [
-          
-        ]
+        loadChildren: () =>import('./recipes/recipe.module').then(m=>m.RecipeModule)
       },
       /* {
          path: '',

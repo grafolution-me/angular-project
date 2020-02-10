@@ -13,25 +13,34 @@ import {MaterialModule} from '../../shared/material.modul.module';
 import {RouterModule, Routes} from '@angular/router';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipesResolverService } from './recipes-resolver.service';
+import { AuthGuard } from '../auth/auth.guard';
 const route: Routes = [
   {
-    path: '',
-    component: RecipeInfoComponent
-  },
-  {
-    path: 'new',
-    component: RecipeEditComponent
-  },
-  {
-    path: ':id',
-    component: RecipeDetailComponent,
-    resolve: [RecipesResolverService]
-  },
-  {
-    path: ':id/edit',
-    component: RecipeEditComponent,
-    resolve: [RecipesResolverService]
+    path:'',
+    component: RecipesComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: RecipeInfoComponent
+      },
+      {
+        path: 'new',
+        component: RecipeEditComponent
+      },
+      {
+        path: ':id',
+        component: RecipeDetailComponent,
+        resolve: [RecipesResolverService]
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent,
+        resolve: [RecipesResolverService]
+      }
+    ]  
   }
+ 
 ]
 @NgModule({
     declarations: [
