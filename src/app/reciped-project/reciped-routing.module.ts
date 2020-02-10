@@ -7,12 +7,12 @@ import {WelcomeRecipeComponent} from './components/welcome-recipe/welcome-recipe
 
 const routes: Routes = [
   {
-    path: 'reciped', 
+    path: 'reciped',
     component: RecipedProjectComponent,
     children: [
       {
         path: 'shoppingList',
-        loadChildren: ( ) => import('./shopping-list/shopping-list.module').then(m=>m.ShoppingListModule)
+        loadChildren: () => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
       },
       {
         path: 'auth',
@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'recipes',
-        loadChildren: () =>import('./recipes/recipe.module').then(m=>m.RecipeModule)
+        loadChildren: () => import('./recipes/recipe.module').then(m => m.RecipeModule)
       },
       /* {
          path: '',

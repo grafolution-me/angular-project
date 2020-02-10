@@ -16,7 +16,7 @@ import { RecipesResolverService } from './recipes-resolver.service';
 import { AuthGuard } from '../auth/auth.guard';
 const route: Routes = [
   {
-    path:'',
+    path: '',
     component: RecipesComponent,
     canActivate: [AuthGuard],
     children: [
@@ -38,10 +38,9 @@ const route: Routes = [
         component: RecipeEditComponent,
         resolve: [RecipesResolverService]
       }
-    ]  
+    ]
   }
- 
-]
+];
 @NgModule({
     declarations: [
       RecipeDetailComponent,
