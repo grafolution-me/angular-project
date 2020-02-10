@@ -10,8 +10,6 @@ import {
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from "@angular/material/sidenav";
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 
 @NgModule({
   imports: [
@@ -22,7 +20,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatCardModule,
     MatListModule,
     MatSidenavModule,
-    BrowserAnimationsModule
   ],
   exports: [
     MatButtonModule,
@@ -33,7 +30,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatListModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
-    BrowserAnimationsModule
   ]
 })
 export class MaterialModule {}

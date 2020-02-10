@@ -1,12 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RecipesComponent} from './recipes/recipes.component';
-import {ShoppingListComponent} from './shopping-list/shopping-list.component';
-import {RecipesResolverService} from './recipes/recipes-resolver.service';
-import {AuthGuard} from './auth/auth.guard';
-import {RecipeInfoComponent} from './recipes/recipe-info/recipe-info.component';
-import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
-import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {AuthComponent} from './auth/auth.component';
 import {RecipedProjectComponent} from './reciped-project.component';
 import {WelcomeRecipeComponent} from './components/welcome-recipe/welcome-recipe.component';
@@ -14,11 +7,12 @@ import {WelcomeRecipeComponent} from './components/welcome-recipe/welcome-recipe
 
 const routes: Routes = [
   {
-    path: 'reciped', component: RecipedProjectComponent,
+    path: 'reciped', 
+    component: RecipedProjectComponent,
     children: [
       {
         path: 'shoppingList',
-        component: ShoppingListComponent
+        loadChildren: ( ) => import('./shopping-list/shopping-list.module').then(m=>m.ShoppingListModule)
       },
       {
         path: 'auth',
@@ -26,28 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'recipes',
-        component: RecipesComponent,
-        canActivate: [AuthGuard],
-        children: [
-          {
-            path: '',
-            component: RecipeInfoComponent
-          },
-          {
-            path: 'new',
-            component: RecipeEditComponent
-          },
-          {
-            path: ':id',
-            component: RecipeDetailComponent,
-            resolve: [RecipesResolverService]
-          },
-          {
-            path: ':id/edit',
-            component: RecipeEditComponent,
-            resolve: [RecipesResolverService]
-          }
-        ]
+        loadChildren: () =>import('./recipes/recipe.module').then(m=>m.RecipeModule)
       },
       /* {
          path: '',

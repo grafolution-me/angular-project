@@ -10,8 +10,38 @@ import {SharedModule} from '../shared/shared.module';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../shared/material.modul.module';
-import {RouterModule} from '@angular/router';
-
+import {RouterModule, Routes} from '@angular/router';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { RecipesResolverService } from './recipes-resolver.service';
+import { AuthGuard } from '../auth/auth.guard';
+const route: Routes = [
+  {
+    path:'',
+    component: RecipesComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: RecipeInfoComponent
+      },
+      {
+        path: 'new',
+        component: RecipeEditComponent
+      },
+      {
+        path: ':id',
+        component: RecipeDetailComponent,
+        resolve: [RecipesResolverService]
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent,
+        resolve: [RecipesResolverService]
+      }
+    ]  
+  }
+ 
+]
 @NgModule({
     declarations: [
       RecipeDetailComponent,
@@ -20,7 +50,8 @@ import {RouterModule} from '@angular/router';
       RecipesComponent,
       RecipedProjectComponent,
       HeaderComponent,
-      RecipeInfoComponent
+      RecipeInfoComponent,
+      RecipeEditComponent
     ],
   imports: [
     CommonModule,
@@ -28,7 +59,7 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     SharedModule,
     MaterialModule,
-    RouterModule
+    RouterModule.forChild(route)
   ],
   exports: [
       HeaderComponent,
