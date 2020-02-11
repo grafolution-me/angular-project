@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthComponent} from './auth/auth.component';
 import {RecipedProjectComponent} from './reciped-project.component';
 import {WelcomeRecipeComponent} from './components/welcome-recipe/welcome-recipe.component';
+import {StoreModule} from '@ngrx/store';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 
 const routes: Routes = [
@@ -37,7 +39,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    StoreModule.forRoot({shoppingList: shoppingListReducer}),
+    RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class RecipedRoutingModule {
