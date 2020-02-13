@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
 
 @Component({
   selector: 'app-reciped-project',
@@ -13,12 +15,13 @@ export class RecipedProjectComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit(): void {
     this.authService.retrieveUserData();
-    this.authService.user.subscribe(data => {
+    this.store.select('auth').subscribe(data => {
         this.isAuthenticated = !data ? false : true;
       }
     );
