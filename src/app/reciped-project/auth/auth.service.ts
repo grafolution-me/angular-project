@@ -6,6 +6,7 @@ import {AuthResponseData} from './AuthResponseData';
 import {UserModel} from './user.model';
 import {Router} from '@angular/router';
 import {IUserModel} from './user-interface.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({providedIn: 'root'})
@@ -21,7 +22,7 @@ export class AuthService {
 
 
     // tslint:disable-next-line:max-line-length
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD_i4C1ZnUYhPSukaxZkfqJzwJctRp0uYw',
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseKey,
       {
         email,
         password,
@@ -35,7 +36,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
     // tslint:disable-next-line:max-line-length
-      .post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD_i4C1ZnUYhPSukaxZkfqJzwJctRp0uYw', {
+      .post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key' + environment.firebaseKey, {
           email,
           password,
           returnSecureToken: true,
