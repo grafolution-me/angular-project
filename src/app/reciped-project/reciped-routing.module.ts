@@ -40,7 +40,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    StoreModule.forRoot({shoppingList: shoppingListReducer}),
     RouterModule.forChild(routes)],
   exports: [RouterModule]
 })

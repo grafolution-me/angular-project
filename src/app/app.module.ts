@@ -11,7 +11,6 @@ import {PageNotFoundComponent} from './core/page-not-found.component';
 
 import {RecipedModule} from './reciped-project/reciped.module.module';
 import {DirectivesModule} from './directives-project/directives.module';
-import {ShoppingListService} from './reciped-project/shopping-list/shopping-list.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RecipeService} from './reciped-project/recipes/recipe.service';
 import {DaoRecipeService} from './reciped-project/shared/dao.recipe.service';
@@ -36,7 +35,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
 
   ],
-  providers: [ShoppingListService, RecipeService, DaoRecipeService],
+  providers: [RecipeService, DaoRecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

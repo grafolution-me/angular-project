@@ -10,6 +10,8 @@ import {CoreModule} from './core.module';
 import {RecipeModule} from './recipes/recipe.module';
 import {ShoppingListModule} from './shopping-list/shopping-list.module';
 import {AuthModule} from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
 
@@ -23,7 +25,8 @@ import {AuthModule} from './auth/auth.module';
     SharedModule,
     ShoppingListModule,
     RecipeModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot(fromApp.appReducer),
   ],
   declarations: [
     WelcomeRecipeComponent,
