@@ -6,23 +6,23 @@ import {AuthResponseData} from './AuthResponseData';
 import {UserModel} from './user.model';
 import {Router} from '@angular/router';
 import {IUserModel} from './user-interface.model';
-import { Store } from '@ngrx/store';
-import * as fromApp from '../store/app.reducer'; 
-import * as AuthActions from './store/auth.actions';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-  //user = new BehaviorSubject<UserModel>(null);
+  user = new BehaviorSubject<UserModel>(null);
 
 
   constructor(private http: HttpClient,
-              private router: Router,
-              private store: Store<fromApp.AppState>) {
+              private router: Router) {
   }
 
   signUp(email: string, password: string) {
+
+
     // tslint:disable-next-line:max-line-length
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD_i4C1ZnUYhPSukaxZkfqJzwJctRp0uYw',
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseKey,
       {
         email,
         password,
@@ -36,7 +36,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
     // tslint:disable-next-line:max-line-length
-      .post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD_i4C1ZnUYhPSukaxZkfqJzwJctRp0uYw', {
+      .post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseKey, {
           email,
           password,
           returnSecureToken: true,
@@ -51,7 +51,7 @@ export class AuthService {
               resData.idToken,
               +resData.expiresIn);
           }
-       ));
+        ));
   }
 
   retrieveUserData() {
@@ -63,39 +63,21 @@ export class AuthService {
     const loadedUser = new UserModel(userD.email, userD.id, userD._token, new Date(userD._tokenExpriationDate));
     console.log(loadedUser )
     if (loadedUser.token) {
-     // this.user.next(loadedUser);
-      this.store.dispatch(new AuthActions.Login(
-        {email: loadedUser.email, 
-          userId: loadedUser.id, 
-          token: loadedUser.token, 
-          expirationDate: new Date(loadedUser.tokenExpriationDate)
-        }));
+      this.user.next(loadedUser);
     }
   }
 
   logout() {
-    //this.user.next(null);
-    this.store.dispatch(
-      new AuthActions.Logout()
-    )
+    this.user.next(null);
     this.router.navigate(['/reciped/auth']);
     localStorage.removeItem('userRecipedApp');
   }
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
     const expDate = new Date(new Date().getTime() + (expiresIn * 1000));
-    // const user = new UserModel(email, userId, token, expDate);
-    // console.log(user.token);
-    // this.user.next(user);
-    const user = new UserModel(email, userId, token, expDate)
-    this.store.dispatch(new AuthActions.Login(
-      {
-        email: email,
-        userId: userId,
-        token: token,
-        expirationDate: expDate
-      }
-    ))
+    const user = new UserModel(email, userId, token, expDate);
+    console.log(user.token);
+    this.user.next(user);
     localStorage.setItem('userRecipedApp', JSON.stringify(user));
   }
 
