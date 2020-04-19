@@ -1,4 +1,6 @@
 # AngularPractiseProjects
+This is a small project which is divided into several parts. One of them is a fully functional application for managing and editing recipes.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
 
